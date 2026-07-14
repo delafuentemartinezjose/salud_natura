@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -63,7 +63,7 @@
 
     /* Card */
     .bq-card {
-      background:#f5edcf;border-radius:4px;overflow:hidden;
+      background:#0d1810;border-radius:4px;overflow:hidden;
       border:1px solid rgba(184,146,74,.3);
       transition:transform .2s,box-shadow .2s,opacity .3s,filter .3s;
       position:relative;
@@ -74,10 +74,14 @@
     .bq-card-head {
       padding:15px 13px 10px;display:flex;align-items:flex-start;gap:10px;cursor:pointer;
     }
-    .bq-icon { font-size:1.6rem;flex-shrink:0;line-height:1;margin-top:1px; }
+    .bq-icon {
+      width:36px;height:36px;border-radius:50%;flex-shrink:0;
+      display:flex;align-items:center;justify-content:center;
+      font-family:'Cinzel',serif;font-size:.68rem;font-weight:700;letter-spacing:.03em;
+    }
     .bq-card-info { flex:1;min-width:0; }
     .bq-card-name {
-      font-family:'Cinzel',serif;font-size:.85rem;color:#2a1400;
+      font-family:'Cinzel',serif;font-size:.85rem;color:#e8d5a3;
       font-weight:600;line-height:1.3;margin-bottom:6px;
     }
     .bq-badge {
@@ -87,7 +91,7 @@
     }
     .bq-arrow {
       position:absolute;bottom:10px;right:12px;font-size:.8rem;
-      color:rgba(58,30,0,.35);transition:transform .25s;pointer-events:none;
+      color:rgba(212,175,55,.5);transition:transform .25s;pointer-events:none;
     }
     .bq-card.open .bq-arrow { transform:rotate(180deg); }
 
@@ -95,26 +99,26 @@
     .bq-detail {
       max-height:0;overflow:hidden;
       transition:max-height .35s cubic-bezier(.4,0,.2,1);
-      background:#ede0b8;border-top:1px solid rgba(184,146,74,.2);
+      background:#0a1a0d;border-top:1px solid rgba(184,146,74,.2);
     }
-    .bq-card.open .bq-detail { max-height:360px; }
+    .bq-card.open .bq-detail { max-height:600px; }
     .bq-detail-in { padding:13px 15px 17px; }
     .bq-planta {
-      font-family:'Cinzel',serif;font-size:.85rem;color:#3a1e00;
+      font-family:'Cinzel',serif;font-size:.85rem;color:#d4af37;
       margin-bottom:2px;
     }
-    .bq-lat { font-style:italic;font-size:.72rem;color:#8a6010;margin-bottom:10px; }
+    .bq-lat { font-style:italic;font-size:.72rem;color:#b8924a;margin-bottom:10px; }
     .bq-label {
       font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:2px;
-      text-transform:uppercase;color:#8a6010;margin-bottom:5px;
+      text-transform:uppercase;color:#b8924a;margin-bottom:5px;
     }
     .bq-prep {
-      font-family:'EB Garamond','Palatino Linotype',Georgia,serif;font-size:.82rem;color:#3a1e00;
+      font-family:'EB Garamond','Palatino Linotype',Georgia,serif;font-size:.82rem;color:rgba(232,224,208,.82);
       line-height:1.7;margin-bottom:10px;
     }
     .bq-nota {
       font-family:'EB Garamond','Palatino Linotype',Georgia,serif;font-style:italic;font-size:.75rem;
-      color:#5a3000;background:rgba(184,146,74,.1);
+      color:rgba(232,224,208,.75);background:rgba(184,146,74,.1);
       border-left:2px solid #b8924a;padding:6px 10px;border-radius:0 2px 2px 0;
     }
 
@@ -125,6 +129,14 @@
     .cat-e  { background:#5c2d80; }
     .cat-p  { background:#924a1a; }
     .cat-c  { background:#6a5500; }
+
+    /* Circle icon colors per category */
+    .bq-icon.cat-d  { background:rgba(139,37,23,.22);  color:#e07060; }
+    .bq-icon.cat-di { background:rgba(35,102,64,.22);  color:#5ab87a; }
+    .bq-icon.cat-r  { background:rgba(20,82,122,.22);  color:#5a98cc; }
+    .bq-icon.cat-e  { background:rgba(92,45,128,.22);  color:#a070d0; }
+    .bq-icon.cat-p  { background:rgba(146,74,26,.22);  color:#c88050; }
+    .bq-icon.cat-c  { background:rgba(106,85,0,.22);   color:#c8a830; }
 
     /* Aviso */
     .bq-aviso {
@@ -152,7 +164,7 @@
       border-radius:20px;background:rgba(184,146,74,.06);cursor:pointer;
       transition:background .2s,color .2s,border-color .2s;
     }
-    .bq-ficha-btn:hover { background:rgba(184,146,74,.18);border-color:#b8924a;color:#7a4a00; }
+    .bq-ficha-btn:hover { background:rgba(184,146,74,.18);border-color:#b8924a;color:#e8d5a3; }
 
     /* ── FICHA OVERLAY ── */
     #fichaOverlay {
@@ -163,7 +175,7 @@
     #fichaOverlay.visible { display:flex; }
 
     #fichaPanel {
-      background:#f5edcf;border-radius:5px;overflow:hidden;
+      background:#0d1810;border-radius:5px;overflow:hidden;
       box-shadow:0 30px 80px rgba(0,0,0,.7);
       width:100%;max-width:720px;max-height:90vh;overflow-y:auto;
       position:relative;
@@ -171,11 +183,16 @@
 
     /* Cabecera de la ficha */
     .fp-head {
-      background:linear-gradient(135deg,#2a1400 0%,#4a2800 100%);
+      background:linear-gradient(135deg,#0a1a0d 0%,#162510 100%);
       padding:20px 24px 18px;display:flex;align-items:flex-start;gap:18px;
       position:relative;
+      border-bottom:1px solid rgba(184,146,74,.25);
     }
-    .fp-head-icon { font-size:2.6rem;flex-shrink:0;line-height:1; }
+    .fp-head-icon {
+      width:52px;height:52px;border-radius:50%;flex-shrink:0;
+      display:flex;align-items:center;justify-content:center;
+      font-family:'Cinzel',serif;font-size:.85rem;font-weight:700;letter-spacing:.03em;
+    }
     .fp-head-info { flex:1; }
     .fp-head-cat {
       font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:3px;
@@ -199,12 +216,12 @@
 
     /* Barra de acciones */
     .fp-actions {
-      background:#ede0b8;border-bottom:1px solid rgba(184,146,74,.25);
+      background:#0a1a0d;border-bottom:1px solid rgba(184,146,74,.25);
       padding:10px 20px;display:flex;align-items:center;justify-content:space-between;
     }
     .fp-btn-back {
       font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:2px;
-      text-transform:uppercase;color:#8a6010;border:1px solid rgba(184,146,74,.4);
+      text-transform:uppercase;color:#b8924a;border:1px solid rgba(184,146,74,.4);
       padding:6px 14px;border-radius:20px;background:transparent;
       cursor:pointer;transition:background .2s;display:flex;align-items:center;gap:6px;
     }
@@ -221,29 +238,29 @@
     .fp-body { padding:24px 28px 30px; }
     .fp-section-title {
       font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:3px;
-      text-transform:uppercase;color:#8a6010;margin-bottom:8px;
+      text-transform:uppercase;color:#b8924a;margin-bottom:8px;
       border-bottom:1px solid rgba(184,146,74,.3);padding-bottom:5px;
     }
     .fp-prep-text {
-      font-family:'EB Garamond','Palatino Linotype',Georgia,serif;font-size:.88rem;color:#2a1400;
+      font-family:'EB Garamond','Palatino Linotype',Georgia,serif;font-size:.88rem;color:rgba(232,224,208,.85);
       line-height:1.75;margin-bottom:22px;
     }
     .fp-nota-box {
-      background:rgba(184,146,74,.1);border:1px solid rgba(184,146,74,.3);
+      background:rgba(184,146,74,.08);border:1px solid rgba(184,146,74,.3);
       border-left:3px solid #b8924a;border-radius:0 4px 4px 0;
       padding:12px 16px;margin-bottom:22px;
     }
     .fp-nota-label {
       font-family:'Cinzel',serif;font-size:.46rem;letter-spacing:2.5px;
-      text-transform:uppercase;color:#8a6010;margin-bottom:5px;
+      text-transform:uppercase;color:#b8924a;margin-bottom:5px;
     }
     .fp-nota-text {
       font-family:'EB Garamond','Palatino Linotype',Georgia,serif;font-style:italic;font-size:.82rem;
-      color:#5a3000;line-height:1.65;
+      color:rgba(232,224,208,.75);line-height:1.65;
     }
     .fp-divider {
       text-align:center;font-family:'Cinzel',serif;font-size:.72rem;
-      letter-spacing:2px;color:#8a6010;margin:20px 0 0;
+      letter-spacing:2px;color:#b8924a;margin:20px 0 0;
     }
 
     /* ── PRINT ── */
@@ -277,13 +294,14 @@
       </div>
       <ul class="nav-links">
         <li><a href="/">Inicio</a></li>
-        <li><a href="index.html#pilares">Filosofía</a></li>
+        <li><a href="/#pilares">Filosofía</a></li>
         <li><a href="/grimorio">El Grimorio</a></li>
         <li><a href="/botiquin" style="color:#b8924a">Botiquín</a></li>
-        <li><a href="index.html#contacto">Contacto</a></li>
+        <li><a href="/taller">Taller</a></li>
+        <li><a href="/#contacto">Contacto</a></li>
       </ul>
       <div class="hamburger" onclick="toggleMenu()">☰</div>
-      <a href="grimorio.html#registro" class="btn-registro-nav" onclick="sessionStorage.setItem('abrirRegistro','1')">Registrarse</a>
+      <a href="/grimorio#registro" class="btn-registro-nav" onclick="sessionStorage.setItem('abrirRegistro','1')">Registrarse</a>
     </nav>
   </header>
 
@@ -357,13 +375,14 @@
   function toggleMenu(){ document.querySelector('.nav-links').classList.toggle('open'); }
 
   const CATS = {
-    d:  { label:'Dolor & Inflamación',  cls:'cat-d'  },
-    di: { label:'Sistema Digestivo',    cls:'cat-di' },
-    r:  { label:'Sistema Respiratorio', cls:'cat-r'  },
-    e:  { label:'Salud Emocional',      cls:'cat-e'  },
-    p:  { label:'Piel & Heridas',       cls:'cat-p'  },
-    c:  { label:'Corazón & Órganos',    cls:'cat-c'  },
+    d:  { label:'Dolor & Inflamación',  cls:'cat-d',  ini:'D'  },
+    di: { label:'Sistema Digestivo',    cls:'cat-di', ini:'Di' },
+    r:  { label:'Sistema Respiratorio', cls:'cat-r',  ini:'R'  },
+    e:  { label:'Salud Emocional',      cls:'cat-e',  ini:'SN' },
+    p:  { label:'Piel & Heridas',       cls:'cat-p',  ini:'Pi' },
+    c:  { label:'Corazón & Órganos',    cls:'cat-c',  ini:'Ci' },
   };
+  function bqCircle(cat){ return `<span class="bq-icon ${cat.cls}">${cat.ini}</span>`; }
 
   let R = [];
 
@@ -378,7 +397,7 @@
       el.id = `bq-${i}`;
       el.innerHTML = `
         <div class="bq-card-head" onclick="toggle(${i})">
-          <span class="bq-icon">${r.emoji}</span>
+          ${bqCircle(cat)}
           <div class="bq-card-info">
             <div class="bq-card-name">${r.dolencia}</div>
             <span class="bq-badge ${cat.cls}">${cat.label}</span>
@@ -389,10 +408,10 @@
           <div class="bq-detail-in">
             <div class="bq-planta">🌿 ${r.planta}</div>
             <div class="bq-lat">${r.nombre_cientifico}</div>
-            <div class="bq-label">Preparacion</div>
+            <div class="bq-label">Preparación</div>
             <div class="bq-prep">${r.preparacion}</div>
             <div class="bq-nota">${r.nota}</div>
-            <button class="bq-ficha-btn" onclick="abrirFicha(${i})">Ver ficha completa</button>
+            <button class="bq-ficha-btn" onclick="abrirFicha(${i})">📋 Ver ficha completa</button>
             ${r.grimorio_idx !== null && r.grimorio_idx !== undefined ? `<a class="bq-ficha-btn" href="/grimorio?h=${r.grimorio_idx}" style="margin-left:.5rem;text-decoration:none">🌿 Ver en Grimorio</a>` : ''}
           </div>
         </div>`;
@@ -416,7 +435,9 @@
   function abrirFicha(i){
     const r = R[i];
     const cat = CATS[r.categoria] || CATS['d'];
-    document.getElementById('fpIcon').textContent = r.emoji;
+    const fpIcon = document.getElementById('fpIcon');
+    fpIcon.textContent = cat.ini;
+    fpIcon.className = 'fp-head-icon bq-icon ' + cat.cls;
     document.getElementById('fpCat').textContent = cat.label;
     document.getElementById('fpDolencia').textContent = r.dolencia;
     document.getElementById('fpPlanta').textContent = '🌿 ' + r.planta;

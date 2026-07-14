@@ -453,7 +453,7 @@ html,body{height:100%;font-family:'Lato',sans-serif;background:var(--verde);over
 /* ── ÍNDICE ── */
 #indexView{
   display:none;flex:1;
-  overflow:hidden;
+  overflow-x:hidden;overflow-y:auto;
 }
 #indexView.visible{display:flex}
 #plantView{display:flex;flex:1;overflow:hidden}
@@ -576,9 +576,9 @@ html,body{height:100%;font-family:'Lato',sans-serif;background:var(--verde);over
 .idx-plant-wrap{display:none;flex-direction:column;gap:.5rem;position:relative;z-index:1}
 .idx-plant-wrap.visible{display:flex}
 /* ── JUGOS PANEL IZQUIERDO ── */
-.idx-jugos-toggle{width:100%;text-align:left;background-color:rgba(255,255,255,.06);border:1px solid rgba(184,146,74,.5);color:rgba(232,224,208,.92);font-family:'EB Garamond',serif;font-style:italic;font-size:.85rem;padding:.38rem .7rem;cursor:pointer;border-radius:3px;display:flex;justify-content:space-between;align-items:center;transition:background .2s;position:relative;z-index:1}
+.idx-jugos-toggle{width:100%;text-align:left;background-color:rgba(255,255,255,.06);border:1px solid rgba(184,146,74,.5);color:rgba(232,224,208,.92);font-family:'EB Garamond',serif;font-style:italic;font-size:.85rem;padding:.38rem .7rem;cursor:pointer;border-radius:3px;display:flex;justify-content:space-between;align-items:center;transition:background .2s;position:relative;z-index:10}
 .idx-jugos-toggle:hover{background:rgba(212,175,55,.12)}
-.idx-jugos-list{list-style:none;padding:0;margin:.3rem 0 0;border:1px solid rgba(184,146,74,.35);border-radius:2px;overflow:hidden;max-height:200px;overflow-y:auto;position:relative;z-index:1}
+.idx-jugos-list{list-style:none;padding:0;margin:0 0 .3rem;border:1px solid rgba(184,146,74,.35);border-radius:2px;overflow-x:hidden;max-height:280px;overflow-y:auto;position:absolute;bottom:100%;left:0;right:0;z-index:100;background:#0d1810}
 .idx-jugos-item{padding:.38rem .7rem;cursor:pointer;border-bottom:1px solid rgba(212,175,55,.15);display:flex;flex-direction:column;gap:.15rem;transition:background .15s;background:#0d1810}
 .idx-jugos-item:hover{background:rgba(184,146,74,.18)}
 .idx-jugos-item:last-child{border-bottom:none}
@@ -593,15 +593,15 @@ html,body{height:100%;font-family:'Lato',sans-serif;background:var(--verde);over
 .jugo-view-meta{padding:.9rem 1rem;flex:1}
 .jugo-view-tag{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:3px;text-transform:uppercase;color:#b8924a;margin:0 0 .3rem}
 .jugo-view-nombre{font-family:'EB Garamond',serif;font-style:italic;font-size:1.05rem;color:rgba(232,224,208,.92);line-height:1.4;margin:0 0 .5rem}
-.jugo-view-ayuda{font-style:italic;font-size:.8rem;color:#4a2800;line-height:1.6;margin:0}
-.jugo-view-right{flex:1;background:#f5edcf;overflow-y:auto;padding:1.2rem 1.3rem}
+.jugo-view-ayuda{font-style:italic;font-size:.8rem;color:rgba(232,224,208,.75);line-height:1.6;margin:0}
+.jugo-view-right{flex:1;background:#0d1810;overflow-y:auto;padding:1.2rem 1.3rem}
 .jugo-view-sec{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:3px;text-transform:uppercase;color:#b8924a;margin:1rem 0 .3rem;border-bottom:1px solid rgba(184,146,74,.3);padding-bottom:.3rem}
 .jugo-view-sec:first-child{margin-top:0}
 .jugo-view-ing{list-style:none;padding:0;margin:0 0 .5rem}
 .jugo-view-ing li{font-style:italic;font-size:.82rem;color:rgba(232,224,208,.82);padding:2px 0;padding-left:.9rem;position:relative}
 .jugo-view-ing li::before{content:'✦';position:absolute;left:0;color:#b8924a;font-size:.5rem;top:.35rem}
 .jugo-view-pasos{padding-left:1.2rem;margin:0}
-.jugo-view-pasos li{font-style:italic;font-size:.82rem;color:rgba(232,224,208,.82);line-height:1.65;padding:3px 0;border-bottom:1px solid rgba(212,175,55,.06)}
+.jugo-view-pasos li{font-style:italic;font-size:.82rem;color:rgba(232,224,208,.82);line-height:1.65;padding:3px 0;border-bottom:1px solid rgba(212,175,55,.08)}
 .jugo-view-pasos li:last-child{border-bottom:none}
 .nav-btn-idx{
   width:auto;padding:0 1rem;border-radius:3px;
@@ -727,6 +727,27 @@ html,body{height:100%;font-family:'Lato',sans-serif;background:var(--verde);over
   .idx-title { color: #2a1400 !important; }
   .idx-field-label { color: #8a6010 !important; }
   .page-right::before { display: none !important; }
+
+  /* ── Jugos e Infusiones al imprimir ── */
+  #jugoView:not(.hidden), #infusionView:not(.hidden) { display: flex !important; }
+  #jugoView.hidden, #infusionView.hidden { display: none !important; }
+  .jugo-view-left { background: #fff !important; border-right: 1px solid #ccc !important; }
+  .jugo-view-right { background: #fff !important; }
+  .jugo-view-nombre { color: #2a1400 !important; }
+  .jugo-view-tag { color: #8a6010 !important; }
+  .jugo-view-ayuda { color: #5a3000 !important; }
+  .jugo-view-sec { color: #8a6010 !important; border-bottom-color: #b8924a !important; }
+  .jugo-view-ing li { color: #1a0e00 !important; }
+  .jugo-view-ing li::before { color: #b8924a !important; }
+  .jugo-view-pasos li { color: #1a0e00 !important; border-bottom-color: rgba(184,146,74,.2) !important; }
+  .jugo-panel { background: #fff !important; border-color: #b8924a !important; }
+  .jugo-panel-nombre { color: #2a1400 !important; }
+  .jugo-panel-ayuda { color: #5a3000 !important; background: rgba(184,146,74,.06) !important; }
+  .jugo-ing-title { color: #8a6010 !important; }
+  .jugo-ing-list li { color: #1a0e00 !important; }
+  .jugo-prep-list li { color: #1a0e00 !important; }
+  .jugo-toggle-btn, .jugo-prep-btn { display: none !important; }
+  .jugo-prep-list { display: block !important; }
 }
 </style>
 </head>
@@ -881,18 +902,22 @@ html,body{height:100%;font-family:'Lato',sans-serif;background:var(--verde);over
           <hr class="idx-divider">
 
           <p class="idx-field-label">Jugos herbales</p>
-          <button class="idx-jugos-toggle" id="idxJugosToggle" onclick="toggleIdxJugosList()">
-            <span>— Elige un elixir —</span><span id="idxJugosArrow">▾</span>
-          </button>
-          <ul class="idx-jugos-list" id="idxJugosList" style="display:none"></ul>
+          <div style="position:relative">
+            <ul class="idx-jugos-list" id="idxJugosList" style="display:none"></ul>
+            <button class="idx-jugos-toggle" id="idxJugosToggle" onclick="toggleIdxJugosList()">
+              <span>— Elige un elixir —</span><span id="idxJugosArrow">▾</span>
+            </button>
+          </div>
 
           <hr class="idx-divider">
 
           <p class="idx-field-label">Infusiones medicinales</p>
-          <button class="idx-jugos-toggle" id="idxInfusionesToggle" onclick="toggleIdxInfusionesList()">
-            <span>— Elige una infusión —</span><span id="idxInfusionesArrow">▾</span>
-          </button>
-          <ul class="idx-jugos-list" id="idxInfusionesList" style="display:none"></ul>
+          <div style="position:relative">
+            <ul class="idx-jugos-list" id="idxInfusionesList" style="display:none"></ul>
+            <button class="idx-jugos-toggle" id="idxInfusionesToggle" onclick="toggleIdxInfusionesList()">
+              <span>— Elige una infusión —</span><span id="idxInfusionesArrow">▾</span>
+            </button>
+          </div>
 
           <p class="idx-hint">Selecciona una dolencia o escribe el nombre de la planta. En la página derecha puedes clicar cualquier planta directamente.</p>
           <div class="idx-corner"></div>
@@ -990,6 +1015,10 @@ html,body{height:100%;font-family:'Lato',sans-serif;background:var(--verde);over
           <ul class="jugo-view-ing" id="jugoViewIng"></ul>
           <p class="jugo-view-sec">Preparación paso a paso</p>
           <ol class="jugo-view-pasos" id="jugoViewPasos"></ol>
+          <button class="btn-print" onclick="if(!getUsuario()){abrirModal()}else{window.print()}" style="margin-top:1rem">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            Imprimir / Guardar ficha
+          </button>
         </div>
       </div><!-- /jugoView -->
 
@@ -1009,6 +1038,10 @@ html,body{height:100%;font-family:'Lato',sans-serif;background:var(--verde);over
           <ul class="jugo-view-ing" id="infusionViewIng"></ul>
           <p class="jugo-view-sec">Preparación paso a paso</p>
           <ol class="jugo-view-pasos" id="infusionViewPasos"></ol>
+          <button class="btn-print" onclick="if(!getUsuario()){abrirModal()}else{window.print()}" style="margin-top:1rem">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            Imprimir / Guardar ficha
+          </button>
         </div>
       </div><!-- /infusionView -->
 
@@ -1285,7 +1318,9 @@ function cerrarFuentes(){
 }
 
 /* ── JUGOS INLINE ── */
-const JUGOS = [
+// JUGOS e INFUSIONES se cargan desde /api/jugos y /api/infusiones al inicio
+let JUGOS = [];
+const _JUGOS_LEGACY = [
   {
     nombre: 'Néctar de Lavanda y Manzana Verde',
     tag: 'Relajante nocturno',
@@ -1377,6 +1412,9 @@ const JUGOS = [
     beneficio: 'La hierba luisa calma simultáneamente el sistema nervioso y el digestivo. Especialmente eficaz cuando el estrés se manifiesta con náuseas o malestar estomacal.'
   }
 ];
+
+// mapeo de campo DB (pexels_id) al campo fotoId que usa el JS
+function _mapReceta(r){ return {...r, fotoId: r.pexels_id}; }
 
 function getJugoParaHierba(nombre){
   const n = nombre.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
@@ -1502,7 +1540,8 @@ function idxRenderLista(lista, label){
   }).join('');
 }
 
-const INFUSIONES = [
+let INFUSIONES = [];
+const _INFUSIONES_LEGACY = [
   {
     nombre:'Infusión de Cúrcuma y Lavanda',
     tag:'Antiinflamatoria articular',
@@ -1718,7 +1757,12 @@ function mapearPlanta(p, idx){
     lat:    p.planta_base || '',
     lote:   loteLabel,
     loteDesc: LOTE_DESC[loteNum] || loteLabel,
-    img:    p.imagen ? `/static/img/${p.imagen}` : `/static/img/${normImg(p.nombre_remedio)}.jpg`,
+    img:    p.imagen
+              ? (p.imagen.startsWith('/') ? p.imagen : `/static/img/${p.imagen}`)
+              : `/static/img/${normImg(p.nombre_remedio)}.jpg`,
+    imgFull: p.imagen_directa_url || (p.imagen
+              ? (p.imagen.startsWith('/') ? p.imagen : `/static/img/${p.imagen}`)
+              : `/static/img/${normImg(p.nombre_remedio)}.jpg`),
     props:  props,
     usos:   p.dosificacion || '',
     nota:   p.contraindicaciones || '',
@@ -1736,11 +1780,30 @@ async function cargarPlantas(){
     const data = await res.json();
     if(data.ok && data.plantas.length){
       hierbas = data.plantas.map((p,i) => mapearPlanta(p, i));
+    } else {
+      hierbas = _hierbasFallback;
     }
   } catch(e) {
     console.warn('Sin servidor — usando datos locales:', e);
     hierbas = _hierbasFallback;
   }
+
+  // Cargar jugos desde DB
+  try {
+    const rj = await fetch('/api/jugos');
+    const dj = await rj.json();
+    if(dj.ok && dj.jugos.length) JUGOS = dj.jugos.map(_mapReceta);
+    else JUGOS = _JUGOS_LEGACY;
+  } catch(e) { JUGOS = _JUGOS_LEGACY; }
+
+  // Cargar infusiones desde DB
+  try {
+    const ri = await fetch('/api/infusiones');
+    const di = await ri.json();
+    if(di.ok && di.infusiones.length) INFUSIONES = di.infusiones.map(_mapReceta);
+    else INFUSIONES = _INFUSIONES_LEGACY;
+  } catch(e) { INFUSIONES = _INFUSIONES_LEGACY; }
+
   idxInit();
   initIdxJugosList();
   initIdxInfusionesList();
@@ -2108,7 +2171,7 @@ ul li::before{content:'◆';position:absolute;left:0;color:#b8924a;font-size:4pt
   <button class="btn-print" onclick="window.print()">🖨 Imprimir / Guardar como PDF</button>
 </div>
 <div class="cab">
-  <img class="logo" src="/static/img/logo.jpg" alt="logo"/>
+  <img class="logo" src="${location.origin}/static/img/logo.jpg" alt="logo"/>
   <div>
     <p class="cab-linea">Salud Natura · Grimorio de Plantas Medicinales</p>
     <p class="cab-nombre">${h.nombre}</p>
@@ -2118,7 +2181,7 @@ ul li::before{content:'◆';position:absolute;left:0;color:#b8924a;font-size:4pt
 </div>
 <div class="cuerpo">
   <div class="col-foto">
-    <img class="foto" src="/static/img/${h.img.replace("img/","")}" alt="${h.nombre}"/>
+    <img class="foto" src="${location.origin}${h.img}" alt="${h.nombre}"/>
   </div>
   <div class="col-info">
     <h2>Propiedades medicinales</h2>
@@ -2168,7 +2231,7 @@ function renderHierba(idx, dir=0){
   img.classList.add('loading');
   img.onload = () => img.classList.remove('loading');
   img.onerror = () => img.classList.remove('loading');
-  img.src = h.img;
+  img.src = h.imgFull || h.img;
 
   // Nombre
   document.getElementById('herbName').textContent = h.nombre;

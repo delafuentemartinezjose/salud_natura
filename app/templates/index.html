@@ -24,14 +24,13 @@
       <ul class="nav-links">
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#pilares">Filosofía</a></li>
-        <li><a href="#grimorio">El Grimorio</a></li>
+        <li><a href="#grimorio">Grimorio</a></li>
         <li><a href="#hierbas">Hierbas</a></li>
         <li><a href="/botiquin">Botiquín</a></li>
         <li><a href="#contacto">Contacto</a></li>
-        <li><a href="/taller">Taller</a></li>
       </ul>
       <div class="hamburger" onclick="toggleMenu()">☰</div>
-      <a href="grimorio.html#registro" class="btn-registro-nav" onclick="sessionStorage.setItem('abrirRegistro','1')">Registrarse</a>
+      <a href="/grimorio#registro" class="btn-registro-nav" onclick="sessionStorage.setItem('abrirRegistro','1')">Registrarse</a>
     </nav>
   </header>
 
@@ -142,7 +141,7 @@
             const card = document.createElement('div');
             card.className = 'lote-card';
             const items = grupo.map((p,j)=>{
-              const img = p.imagen ? '/static/img/'+p.imagen : '/static/img/'+p.nombre_remedio.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/\s+/g,'_').replace(/[^a-z0-9_]/g,'')+'.jpg';
+              const img = p.imagen ? (p.imagen.startsWith('/') ? p.imagen : '/static/img/'+p.imagen) : '/static/img/'+p.nombre_remedio.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/\s+/g,'_').replace(/[^a-z0-9_]/g,'')+'.jpg';
               return '<li><a class="hierba-link" href="/grimorio?h='+(i+j)+'"><img class="hierba-icon" src="'+img+'" alt="'+p.nombre_remedio+'"/> '+p.nombre_remedio+'</a></li>';
             }).join('');
             card.innerHTML = '<div class="lote-header"><span class="lote-num">Lote '+ROMANOS[numLote]+'</span></div><ul>'+items+'</ul>';
@@ -154,6 +153,38 @@
         });
       })();
       </script>
+    </div>
+  </section>
+
+  <!-- BOTIQUÍN HERBAL -->
+  <section id="botiquin-cta" style="background:#060f08;padding:60px 1rem;">
+    <style>
+      .bq-cta-wrap{max-width:700px;margin:0 auto;text-align:center;}
+      .bq-cta-eyebrow{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:4px;color:#d4af37;opacity:.8;margin-bottom:18px;}
+      .bq-cta-card{background:linear-gradient(135deg,#0d2b1a 0%,#0a1a0d 100%);border:1px solid rgba(212,175,55,.35);border-radius:6px;padding:40px 36px;position:relative;overflow:hidden;}
+      .bq-cta-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(212,175,55,.07) 0%,transparent 70%);pointer-events:none;}
+      .bq-cta-title{font-family:'Cinzel',serif;font-size:2rem;color:#f5edd8;line-height:1.2;margin-bottom:10px;}
+      .bq-cta-title span{color:#d4af37;}
+      .bq-cta-sub{color:rgba(245,237,216,.6);font-size:.95rem;margin-bottom:28px;line-height:1.6;}
+      .bq-cta-stats{display:flex;justify-content:center;gap:32px;margin-bottom:32px;flex-wrap:wrap;}
+      .bq-cta-stat{text-align:center;}
+      .bq-cta-stat strong{display:block;font-family:'Cinzel',serif;font-size:1.6rem;color:#d4af37;}
+      .bq-cta-stat span{font-size:.78rem;color:rgba(245,237,216,.55);letter-spacing:1px;text-transform:uppercase;}
+      .bq-cta-btn{display:inline-block;font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:3px;color:#0d2b1a;background:#d4af37;padding:.85rem 2.2rem;border-radius:3px;text-decoration:none;transition:all .3s;}
+      .bq-cta-btn:hover{background:#b5890a;transform:translateY(-2px);}
+    </style>
+    <div class="bq-cta-wrap">
+      <div class="bq-cta-eyebrow">✦ Remedios herbales de acción rápida ✦</div>
+      <div class="bq-cta-card">
+        <h2 class="bq-cta-title">Botiquín Herbal<br><span>de Urgencias</span></h2>
+        <p class="bq-cta-sub">Remedios naturales organizados por dolencia.<br>Preparación en minutos, con lo que tienes en casa.</p>
+        <div class="bq-cta-stats">
+          <div class="bq-cta-stat"><strong>29</strong><span>dolencias</span></div>
+          <div class="bq-cta-stat"><strong>29</strong><span>plantas</span></div>
+          <div class="bq-cta-stat"><strong>⚡</strong><span>preparación en minutos</span></div>
+        </div>
+        <a href="/botiquin" class="bq-cta-btn">ABRIR EL BOTIQUÍN</a>
+      </div>
     </div>
   </section>
 
@@ -457,43 +488,50 @@
     </div>
   </section>
 
+  <!-- MODAL REGISTRO CONTACTO -->
+  <div id="modal-registro-contacto" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999; align-items:center; justify-content:center;">
+    <div style="background:#1a2e1a; border:1px solid #d4af37; border-radius:12px; padding:2.5rem; max-width:420px; width:90%; text-align:center; color:#f5f0e8;">
+      <div style="font-size:2.5rem; margin-bottom:1rem;">🌿</div>
+      <h3 style="font-family:'Cinzel',serif; color:#d4af37; margin-bottom:1rem;">Para enviar tu consulta</h3>
+      <p style="margin-bottom:0.5rem;">Necesitás estar registrado para que podamos responderte.</p>
+      <p style="font-size:0.9rem; opacity:0.8; margin-bottom:1.5rem;">El registro es gratuito y solo toma un momento.</p>
+      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+        <a href="/grimorio#registro" onclick="sessionStorage.setItem('abrirRegistro','1'); sessionStorage.setItem('volverContacto','1'); cerrarModalContacto();" style="background:#d4af37; color:#1a2e1a; padding:0.7rem 1.5rem; border-radius:6px; text-decoration:none; font-weight:bold;">Registrarse ahora</a>
+        <button onclick="cerrarModalContacto()" style="background:transparent; color:#f5f0e8; border:1px solid #f5f0e8; padding:0.7rem 1.5rem; border-radius:6px; cursor:pointer;">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
   <!-- CONTACTO -->
   <section id="contacto" class="contacto">
     <div class="container">
-      <h2 class="section-title">Contacto</h2>
-      <p class="section-subtitle">¿Tenés consultas sobre el Grimorio o las hierbas? Escribinos.</p>
       <div class="contacto-grid">
-        <form class="contacto-form" onsubmit="enviarFormulario(event)">
-          <input type="text" placeholder="Tu nombre" required />
-          <input type="email" placeholder="Tu correo electrónico" required />
-          <textarea placeholder="Tu consulta..." rows="5" required></textarea>
-          <button type="submit" class="btn-primary">Enviar mensaje</button>
-          <p id="form-msg" style="display:none; color:#d4af37; margin-top:1rem;">✅ Mensaje enviado. Te respondemos pronto.</p>
-        </form>
-        <div class="contacto-info">
+        <div class="contacto-izq">
+          <h2 class="contacto-titulo">Contacto</h2>
+          <p class="contacto-subtitulo">¿Tenés consultas sobre el Grimorio o las hierbas? Escribinos.</p>
+          <form class="contacto-form" onsubmit="enviarFormulario(event)">
+            <input type="text" placeholder="Tu nombre" required />
+            <input type="email" placeholder="Tu correo electrónico" required />
+            <textarea placeholder="Tu consulta..." rows="5" required></textarea>
+            <button type="submit" class="btn-primary">Enviar mensaje</button>
+            <p id="form-msg" style="display:none; color:#d4af37; margin-top:1rem;">Mensaje enviado. Te respondemos pronto.</p>
+          </form>
+        </div>
+        <div class="contacto-info" style="margin-top:8rem;">
           <div class="info-item">
-            <span>📧</span>
             <div>
               <strong>Correo</strong>
-              <p>josepsaludnatura@gmail.com</p>
+              <p><a href="mailto:josepsaludnatura@gmail.com" style="color:inherit;text-decoration:none;">josepsaludnatura@gmail.com</a></p>
             </div>
           </div>
           <div class="info-item">
-            <span>🌐</span>
             <div>
-              <strong>Dominio Principal</strong>
-              <p>saludnaturamundo.com</p>
+              <strong>Web</strong>
+              <p><a href="https://saludnaturamundo.com" target="_blank" style="color:inherit;text-decoration:none;">saludnaturamundo.com</a></p>
             </div>
           </div>
-          <div class="info-item">
-            <span>🇦🇷</span>
-            <div>
-              <strong>Dominio Local</strong>
-              <p>saludnatura.com.ar</p>
-            </div>
-          </div>
-          <a href="https://wa.me/549XXXXXXXXXX" class="btn-whatsapp" target="_blank">
-            💬 Escribinos por WhatsApp
+          <a href="https://wa.me/541153255551?text=Hola%2C%20acabo%20de%20ver%20Salud%20Natura%20y%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n" class="btn-whatsapp" target="_blank">
+            Escribinos por WhatsApp
           </a>
         </div>
       </div>

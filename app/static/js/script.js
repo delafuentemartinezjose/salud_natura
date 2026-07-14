@@ -2,10 +2,31 @@ function toggleMenu() {
   document.querySelector('.nav-links').classList.toggle('open');
 }
 
-function enviarFormulario(e) {
+async function enviarFormulario(e) {
   e.preventDefault();
-  document.getElementById('form-msg').style.display = 'block';
-  e.target.reset();
+  const usuario = JSON.parse(sessionStorage.getItem('sn_usuario') || sessionStorage.getItem('usuario') || 'null');
+  if (!usuario) {
+    document.getElementById('modal-registro-contacto').style.display = 'flex';
+    return;
+  }
+  const form = e.target;
+  const nombre  = form.querySelector('input[type="text"]').value;
+  const email   = form.querySelector('input[type="email"]').value;
+  const mensaje = form.querySelector('textarea').value;
+  const res = await fetch('/api/contacto', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ nombre, email, mensaje, id_usuario: usuario.id_usuario })
+  });
+  const data = await res.json();
+  if (data.ok) {
+    document.getElementById('form-msg').style.display = 'block';
+    form.reset();
+  }
+}
+
+function cerrarModalContacto() {
+  document.getElementById('modal-registro-contacto').style.display = 'none';
 }
 
 // Scroll suave del indicador

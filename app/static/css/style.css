@@ -40,7 +40,7 @@ header {
 .navbar {
   display: flex; align-items: center; justify-content: space-between;
   max-width: 1100px; margin: 0 auto;
-  padding: 0.9rem 2rem;
+  padding: 0.9rem 0.5rem;
 }
 
 .logo { display: flex; align-items: center; gap: 0.75rem; }
@@ -59,7 +59,7 @@ header {
 }
 .logo-sub { display: block; font-size: 0.65rem; color: var(--verde-menta); letter-spacing: 3px; text-transform: uppercase; }
 
-.nav-links { display: flex; list-style: none; gap: 2rem; }
+.nav-links { display: flex; list-style: none; gap: 1.2rem; }
 .nav-links a {
   color: var(--texto); text-decoration: none;
   font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase;
@@ -381,8 +381,10 @@ header {
 /* ========== CONTACTO ========== */
 .contacto { padding: 6rem 0; background: #0a1a0d; }
 
-.contacto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-
+.contacto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+.contacto-izq { display: flex; flex-direction: column; gap: 1.5rem; }
+.contacto-titulo { font-family: 'Cinzel', serif; font-size: 2rem; color: var(--dorado); font-weight: 400; letter-spacing: .06em; }
+.contacto-subtitulo { color: rgba(232,224,208,0.7); font-size: 0.95rem; line-height: 1.6; }
 .contacto-form { display: flex; flex-direction: column; gap: 1rem; }
 .contacto-form input,
 .contacto-form textarea {
@@ -397,7 +399,7 @@ header {
 .contacto-form textarea { resize: vertical; }
 .contacto-form button { border: none; cursor: pointer; }
 
-.contacto-info { display: flex; flex-direction: column; gap: 1.5rem; }
+.contacto-info { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 8rem; }
 .info-item { display: flex; gap: 1rem; align-items: flex-start; font-size: 1.4rem; }
 .info-item div strong { color: var(--dorado); font-size: 0.85rem; display: block; }
 .info-item div p { color: rgba(232,224,208,0.75); font-size: 0.88rem; }
@@ -429,6 +431,6 @@ footer {
   .hamburger { display: block; }
   .grimorio-content { grid-template-columns: 1fr; }
   .grimorio-visual { order: -1; }
-  .contacto-grid { grid-template-columns: 1fr; }
+  .contacto-grid { gap: 2rem; }
   .lotes-grid { grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); }
 }
