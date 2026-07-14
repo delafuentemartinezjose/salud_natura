@@ -3,6 +3,7 @@
 __pycache__/
 *.pyc
 data/*.db
+*.db
 ~$*
 *.xlsx
 config_secretos.py
